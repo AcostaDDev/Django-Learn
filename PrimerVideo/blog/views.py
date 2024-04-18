@@ -1,3 +1,33 @@
-from django.shortcuts import render
+import json
 
-# Create your views here.
+from django.shortcuts import render
+from django.http import Http404, HttpResponse, JsonResponse
+
+from .models import Post
+from .forms import PostForm
+
+def post_list(request):
+    posts = Post.objects.all()
+    dict = {'posts': posts}
+    return render(request, 'blog/post/list.html', dict)
+
+def post_detail(request, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+        dict = {'post': post}
+    except Post.DoesNotExist:
+        raise Http404("Publicacion no encontrada")
+    return render(request, 'blog/post/detail.html', dict)
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data      # --> Nos entrega solo los campos
+            print(cd)
+    else:
+        form = PostForm()
+
+    dic = {'form': form}
+
+    return render(request, 'blog/post/createpost.html', dic)
