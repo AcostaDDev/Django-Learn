@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import render
 from django.http import Http404, HttpResponse, JsonResponse
+from django.contrib import messages
 
 from .models import Post
 from .forms import PostForm
@@ -23,8 +24,7 @@ def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data      # --> Nos entrega solo los campos
-            print(cd)
+            messages.success(request, "Post creado con éxito")
     else:
         form = PostForm()
 
