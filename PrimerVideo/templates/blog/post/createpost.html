@@ -3,13 +3,19 @@
 {% block title %}Crear Post{% endblock %}
 
 {% block content %}
+    {% if new_post %}
+        <h1>¡Post creado!</h1>
+        Ingresa al nuevo post de <a href="{% url 'blog:post_detail' new_post.id %}">{{new_post.title}}</a>
 
-    <h1>Crear nuevo Post</h1>
+    {% else %}
+        <h1>Crear nuevo Post</h1>
 
-    <form action="" method="post">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" value="Postear">
-    </form>
+        <form action="" method="post">
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="Postear">
+        </form>
+
+    {% endif %}
 
 {% endblock %}

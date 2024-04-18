@@ -8,7 +8,7 @@ from .models import Post
 from .forms import PostForm
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(published=True)
     dict = {'posts': posts}
     return render(request, 'blog/post/list.html', dict)
 
@@ -24,10 +24,10 @@ def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
+            post = form.save()
             messages.success(request, "Post creado con éxito")
+            return render(request, 'blog/post/createpost.html', {'new_post': post})
     else:
         form = PostForm()
 
-    dic = {'form': form}
-
-    return render(request, 'blog/post/createpost.html', dic)
+    return render(request, 'blog/post/createpost.html', {'form': form})
