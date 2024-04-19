@@ -123,7 +123,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# LOGIN_REDIRECT_URL = 'blog:create_post'
+LOGIN_REDIRECT_URL = 'blog:post_list'
 # LOGIN_URL = 'login'
 
 # os.environ['HTTPS'] = 'on'

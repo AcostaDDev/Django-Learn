@@ -24,6 +24,21 @@
 
     {% endif %}
 
+    {% if request.user.is_authenticated %}
+        Bienvenido {{request.user.first_name | default:request.user.username}}
+        
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Cerrar sesión">
+        </form>
+
+    {% else %}
+
+        <a href="{% url 'login' %}">Iniciar sesión</a>    
+
+    {% endif %}
+
+
     {% block content %}
     {% endblock %}
 </body>
