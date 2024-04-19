@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render
 from django.http import Http404, HttpResponse, JsonResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import PostForm
@@ -20,6 +21,7 @@ def post_detail(request, pk):
         raise Http404("Publicacion no encontrada")
     return render(request, 'blog/post/detail.html', dict)
 
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
