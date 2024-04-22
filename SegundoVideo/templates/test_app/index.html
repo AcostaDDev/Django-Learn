@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    
+    {% with variable="curso de Django" %}
+        <p>Upper: {{ variable|upper}}</p>
+        <p>Lower: {{ variable|lower}}</p>
+        <p>Title: {{ variable|title}}</p>
+        <p>First: {{ variable|first}}</p>
+    {% endwith %}
+
+    {% with 'Java Python Rust Kotlin Typescript' as lista %}
+        <ul>
+            {% for elemento in lista.split %}
+                <li>{{ elemento|first|lower }}</li>
+            {% endfor %}
+        </ul>
+    {% endwith %}
+
+    <p>{{ frameworks.0|default:"[No hay valor]" }}</p>
+    <p>{{ frameworks.5|default:"[No hay valor]" }}</p>
+
+    <hr>
+
+    <p>Hoy es {% now "D jS M Y H T" %}</p>
+    <p>Hoy es {% now "Y" %}</p>
+    <p>Hoy es {% now "jS F Y H:i" %}</p>
+    <p>Hoy es {% now "D jS F \d\e Y H:i" %}</p>
+    <p>Hoy es {% now "SHORT_DATE_FORMAT" %}</p>
+
+    {% with value='Miercoles 09 Enero 2008' %}
+        <p>Fecha Formateada: {{ value|date:"SHORT_DATE_FORMAT" }} </p>
+    {% endwith %}
+    <hr>
+
+</body>
+</html>

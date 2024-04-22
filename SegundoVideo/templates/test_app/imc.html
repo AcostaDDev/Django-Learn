@@ -1,0 +1,27 @@
+{% extends 'test_app/base.html' %}
+
+{% load static %}
+
+{% block title %}IMC{% endblock %}
+
+{% block content %}
+
+    <h1 style="color:purple">
+
+        <p>El peso es: {{datos.0}}</p>
+        <p>Tu estatura es: {{datos.1}} metros</p>
+        <p>Tu IMC es: {{datos.2}}</p>
+        <p>Tu nombre es: {{nombre.upper}}</p>
+
+        Datos: 
+        <ul>
+            {% for dato in datos %}
+                <li>{{dato}}</li>
+            {% endfor %}
+        </ul>
+    
+    </h1>
+
+    <img src="{% static 'images/img_car.jpg' %}" alt="Car">
+
+{% endblock %}
