@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    <h2>Lista de Usuarios registrados</h2>
+
+    <ul>
+
+        {% for user in users %}
+        
+            <li>
+                {% if user == request.user %}
+                    <strong>{{ user }}</strong>
+                {% else %}
+                    {{ user }}
+                {% endif %}
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock content %}

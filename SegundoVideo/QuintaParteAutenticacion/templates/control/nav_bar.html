@@ -1,0 +1,14 @@
+<nav>
+    <a href="{% url "control:home" %}">Home</a> |
+    <a href="{% url "control:register" %}">Registro</a> |
+    <a href="{% url "control:login" %}">Log In</a> |
+    <a href="{% url "control:logout" %}">Cerrar Sesión</a>
+
+    {% if user.is_authenticated %}
+        <span>{{ request.user }}<span>
+        <span>{{ user.username }}<span>
+    {% else %}
+        <span>Usuario no registrado</span>
+    {% endif %}
+    
+</nav>
