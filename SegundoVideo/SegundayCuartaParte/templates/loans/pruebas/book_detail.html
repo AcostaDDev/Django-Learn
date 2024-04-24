@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Book {{object.id}} Detail
+{% endblock title %}
+
+{% block content %}
+
+    <h2>Detalles libro: {{object.id}} - {{object}}</h2>
+    {% if object != None %}
+    
+        <ul>
+            <li>Título: {{object.title}}</li>
+            <li>Autor: {{object.author}}</li>
+            <li>Año de publicación: {{object.year}}</li>
+            <li>Género: {{object.genre}}</li>
+            <li>Editorial: {{object.publisher}}</li>
+        </ul>
+    
+    {% else %}
+
+        <p>No existe ningún libro con ese ID</p>
+
+    {% endif %}
+
+    <a href="{% url "loans:book_list_view" %}">Volver al listado de libros</a>
+    
+{% endblock content %}

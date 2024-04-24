@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Delete{% endblock title %}
+
+{% block content %}
+
+    <h2>Formulario de BORRADO</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <p>Estás seguro de que quieres borrar "{{object}}"?</p>
+        <input type="submit" value="BORRAR">
+        <a href="{% url "loans:book_list_view" %}">Cancel</a>
+    </form>
+
+{% endblock content %}

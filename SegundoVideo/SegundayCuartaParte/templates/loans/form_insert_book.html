@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} {% endblock title %}
+
+{% block content %}
+
+    <form action="{% url "loans:insert_book" %}" method="POST">
+        {% csrf_token %}
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" required>
+        <br>
+        <br>
+        <label for="autor">Autor</label>
+        <input type="text" name="autor" required>
+        <br>
+        <br>
+        <label for="genero">Género</label>
+        <input type="text" name="genero" maxlength=20>
+        <br>
+        <br>
+        <label for="year">Año</label>
+        <input type="number" name="year" min=1900 max=2100 required>
+        <br>
+        <br>
+        <label for="editorialº">Editorial</label>
+        <input type="text" name="editorial">
+        <br>
+        <br>
+        <input type="submit" value="Insertar">
+
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+
+    <h2>Listado de Libros</h2>
+
+    <ul>
+        {% for book in books %}
+        
+            <li>
+
+                {{book}}
+                <a href="{% url "loans:book_detail_view" pk=book.id %}">[Detalle]</a>
+                <a href="{% url "loans:book_delete_view" pk=book.id %}">[Eliminar]</a>
+                <a href="{% url "loans:book_update_view" pk=book.id %}">[Modificar]</a>
+            
+            </li>
+
+            {% empty %}
+
+            <li>No hay Registros</li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

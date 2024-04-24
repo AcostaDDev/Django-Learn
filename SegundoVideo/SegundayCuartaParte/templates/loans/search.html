@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Resultado de la búsqueda</h1>
+
+    {% if libros %}
+        <ul>
+            {% for libro in libros %}
+                <li>{{libro}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+
+        <p>No se ha encontrado ningun libro</p>
+
+    {% endif %}
+
+{% endblock content %}
+
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Update{% endblock title %}
+
+{% block content %}
+    <h2>Acutalizar libro</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Actualizar">
+    </form>
+    <a href="{% url "loans:book_list_view" %}">Cancelar</a>
+{% endblock content %}

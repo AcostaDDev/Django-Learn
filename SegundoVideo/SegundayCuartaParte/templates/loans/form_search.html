@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Formulario{% endblock title %}
+
+{% block content %}
+
+    <form action="{% url "loans:search_result" %}" method="GET">
+        <label for="libro">Inserte cadena</label>
+        <input type="text" name="libro">
+        <input type="submit" value="Buscar">
+    </form>
+
+{% endblock content %}
