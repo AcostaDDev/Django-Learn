@@ -7,3 +7,7 @@ class CustomAuthenticationForm(AuthenticationForm):
         super().__init__(request=None, *args, **kwargs)
         self.fields['username'].label = 'Usuario'
         self.fields['password'].label = 'Contraseña'
+        self.fields['username'].widget.attrs['placeholder'] = 'ej. David'
+        
+class PositionForm(forms.Form):
+    position = forms.CharField()

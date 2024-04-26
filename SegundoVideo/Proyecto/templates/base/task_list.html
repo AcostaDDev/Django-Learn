@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="header-bar">
+
+        <div>
+            <h1>hola {{request.user|title}}</h1>
+            <h3 style="margin:0;">Tienes <i>{{count}}</i> tarea{{count|pluralize:"s"}} incompleta{{count|pluralize:"s"}}</h3>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <form action="{% url "base:logout" %}" method="post"> {% csrf_token %}
+                <input class="a" type="submit" value="Salir">
+            </form>
+        {% else %}
+            <a href="{% url "base:login" %}">Acceder</a>
+        {% endif %}
+
+    </div>
+
+    {% include "base/task_list_search.html" %}     
+    {% include "base/task_list_hidden.html" %}
+    {% include "base/task_list_list.html" %}
+    {% include "base/task_list_js.html" %}
+    
+{% endblock content %}

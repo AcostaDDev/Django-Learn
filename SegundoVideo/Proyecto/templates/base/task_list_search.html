@@ -1,0 +1,10 @@
+<div id="search-add-wrapper">
+    <form method="GET" style="display:flex;">
+        <input type="text" name="search-area" placeholder="Busca tu tarea">
+        <input class="button" type="submit" value="Buscar">
+    </form>
+
+    {% if tasks|length > 0 %}
+        <a id="add-link" href="{% url 'base:task-create' %}">&#x2b;</a>
+    {% endif %}
+</div>

@@ -4,6 +4,24 @@ body {
     padding-top: 50px;
 }
 
+.a {
+    text-underline-offset: 3px;
+}
+
+input.a {
+    background-color: transparent; /* Hacer el fondo transparente */
+    border: none; /* Quitar el borde */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    text-decoration: none; /* Quitar la decoración de texto */
+    color: inherit; /* Usar el color de texto del contenedor padre */
+    font-size: inherit; /* Usar el tamaño de fuente del contenedor padre */
+}
+
+/* Estilos para el botón submit al pasar el ratón */
+input.a:hover {
+    text-decoration: underline; /* Subrayar el texto al pasar el ratón */
+}
+
 h1,
 h2,
 h3,
@@ -18,7 +36,7 @@ p {
     color: #4b5156
 }
 
-a {
+a , .a{
     font-weight: 600;
 }
 
@@ -45,7 +63,7 @@ input {
     background-image: linear-gradient(to right, #30cfd0 0%, #330867 100%);
 }
 
-.header-bar a {
+.header-bar a , .a{
     color: rgb(247, 247, 247);
     text-decoration: none;
 }
@@ -64,7 +82,7 @@ input {
     padding: 20px;
 }
 
-.task-title a {
+.task-title a, .task-title .a {
     text-decoration: none;
     color: #4b5156;
     margin-left: 10px;

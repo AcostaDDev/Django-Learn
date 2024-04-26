@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Página Home</h1>
+    <div class="header-bar">
+        <h1>Página Home</h1>
+    </div>
     {% if user.is_authenticated %}
 
         <p>Usuario: <strong>{{ request.user }}</strong></p>
 
         <form action="{% url "base:logout" %}" method="post"> {% csrf_token %}
-            <input type="submit" value=<a>Logout</a>>
+            <input class="a" type="submit" value="Logout">
         </form>
         {% else %}
 

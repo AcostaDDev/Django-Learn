@@ -6,17 +6,18 @@ from .views import *
 app_name = 'base'
 
 urlpatterns = [
-    path('', TempView.as_view(), name="home"),
+    path('', TaskList.as_view(), name="tasks"),
 
     # RUTAS PARA EL MANEJO DE SESIONES
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='base:login'), name="logout"),
-    path('register/', TempView.as_view(), name="register"),
+    path('register/', RegisterPage.as_view(), name="register"),
+    
     # RUTAS PARA EL MANEJO DE TAREAS
-    path('task/<int:pk>', TempView.as_view(), name="task"),
-    path('task-create/', TempView.as_view(), name="task-create"),
-    path('task-update/<int:pk>', TempView.as_view(), name="task-update"),
-    path('task-delete/<int:pk>', TempView.as_view(), name="task-delete"),
+    path('task/<int:pk>', TaskDetail.as_view(), name="task"),
+    path('task-create/', TaskCreate.as_view(), name="task-create"),
+    path('task-update/<int:pk>', TaskUpdate.as_view(), name="task-update"),
+    path('task-delete/<int:pk>', TaskDelete.as_view(), name="task-delete"),
 
-    path('task-reorder/', TempView.as_view(), name="task-reorder"),
+    path('task-reorder/', TaskReorder.as_view(), name="task-reorder"),
 ]
