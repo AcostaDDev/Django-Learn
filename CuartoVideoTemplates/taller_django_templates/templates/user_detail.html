@@ -1,0 +1,29 @@
+<DOCTYPE html>
+<html lang="es", data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <title>User {{ user.id }}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><strong>User Detail</strong></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url "users:user-list" %}">User List</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Date Joined: {{ user.date_joined | date }}</p>
+                <p>Active: {{ user.is_active }}</p>
+            </article>
+            <p><a href="{% url "users:user-list" %}"><-- Volver</a></p> 
+        </main>
+    </body>
+</html>

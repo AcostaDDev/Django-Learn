@@ -1,0 +1,25 @@
+<DOCTYPE html>
+<html lang="es", data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <title>List User</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><strong>User List</strong></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+        {% with total_users=users.count %}
+            {% for user in users %}
+                <article><p>{{ forloop.counter }}.</p> <p><a href="{% url "users:user-detail" user.id %}">{{ user.username | upper}}</p></a></article>
+            {% endfor %}
+            <p>Total de ususarios: {{ total_users }}</p>
+        {% endwith %}
+        </main>
+    </body>
+</html>
