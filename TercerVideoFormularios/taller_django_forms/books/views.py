@@ -18,12 +18,8 @@ class CreateBookView(View):
             formset = formset_factory(BookForm)(data=request.POST)
             if formset.is_valid():
                 for form in formset:
-                    cd = form.cleaned_data
-                    Book.objects.create(
-                        title=cd['title'],
-                        author_id=cd['author'],
-                        rating=cd['rating']
-                    )
+                    if form.has_changed():
+                        form.save()
                 return redirect('list-book')
             else:
                 return render(request, 'create_book.html', context={'form': formset})
