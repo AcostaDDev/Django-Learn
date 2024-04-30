@@ -12,10 +12,7 @@ import wsgiref.simple_server
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AHDjango.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ah_django.settings')
 
 application = get_wsgi_application()
 
-if __name__ == '__main__':
-    server = wsgiref.simple_server.make_server(host='localhost', app=application, port=8888)
-    server.serve_forever()
