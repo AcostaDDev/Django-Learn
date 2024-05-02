@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p>AVG RATING: {{ avg_rating. }}</p>
+    {% for book in books %}
+        <article>
+            <p>title: {{ book.title }}</p>
+            <p>author: {{ book.author.username }}</p>
+            <p>rating: {{ book.rating }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}
