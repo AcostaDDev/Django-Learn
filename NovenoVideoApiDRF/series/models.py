@@ -7,6 +7,10 @@ class Series(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Serie'
+        verbose_name_plural = 'Series'
     
 
 class Episode(models.Model):
@@ -16,3 +20,7 @@ class Episode(models.Model):
     
     def __str__(self):
         return f"Episode: {self.number} - {self.name}"
+
+    class Meta:
+        verbose_name = 'Episode'
+        verbose_name_plural = 'Episodes'
