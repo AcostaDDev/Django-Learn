@@ -10,7 +10,7 @@ from series.models import Serie, Episode, Score
 
 
 class SeriesViewSet(ModelViewSet):
-    permission_classes = [IsMeOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     serializer_class = SerieSerializer
     queryset = Serie.objects.all()
