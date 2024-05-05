@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import datetime
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -121,25 +122,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+FIXTURE_DIRS = [str(BASE_DIR.joinpath('fixtures/'))]
+
 
 # Con estas líneas se habilita el loggeo de las queries a la base de datos
-# LOGGING = {
-#     'version': 1,
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#         },
-#     },
-#     'loggers': {
-#         'django.db.backends': {
-#             'level': 'DEBUG',
-#             'handlers': ['console']
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'default': {
+            'class': 'logging.Formatter',
+            'format': '%(asctime)s - %(levelname)s - %(name)s --> %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'formatter': 'default',
+        },
+        'error_file': {
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',
+            'formatter': 'default',
+            'level': 'ERROR'
+        },
+    },
+    'loggers': {
+        '': {
+            'level': 'INFO',
+            'handlers': ['console', 'error_file'],
+        },
+    }
+}
 
-LOGIN_URL = '/login/'
-FIXTURE_DIRS = [str(BASE_DIR.joinpath('fixtures/'))]
 
 # import django
 # from django.utils.translation import gettext
