@@ -19,3 +19,21 @@ class SerieSerializer(serializers.Serializer):
         if not description:
             raise ValidationError('The description cannot be blank')
         return description
+
+    def create(self, **kwargs) -> Serie:
+        serie = Serie.objects.create(**self.validated_data)     # ** -> Indica que tiebe que pasar el diccionario con clave y valor, no solo como un objeto
+        return serie
+
+    def update(self, **kwargs) -> Serie:
+        for attr, value in self.validated_data.items():
+            setattr(self.instance, attr, value)
+        self.instance.save()
+        return self.instance
+
+    def save(self, **kwargs) -> Serie:
+        if not self.instance:
+            self.instance = self.create(**self.validated_data)
+        elif self.instance:
+            self.update()
+
+        return self.instance
