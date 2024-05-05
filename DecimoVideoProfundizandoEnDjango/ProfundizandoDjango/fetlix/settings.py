@@ -13,6 +13,7 @@ import datetime
 import sys
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'series.middleware.LoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'fetlix.urls'
@@ -126,35 +128,44 @@ FIXTURE_DIRS = [str(BASE_DIR.joinpath('fixtures/'))]
 ADMINS = [('david', 'acostadavdevelopment@gmail.com')]
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#
-# LOGGING = {
-#     'version': 1,
-#     'formatters': {
-#         'default': {
-#             'class': 'logging.Formatter',
-#             'format': '%(asctime)s - %(levelname)s - %(name)s --> %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'stream': sys.stdout,
-#             'formatter': 'default',
-#         },
-#         'error_file': {
-#             'class': 'logging.FileHandler',
-#             'filename': 'error.log',
-#             'formatter': 'default',
-#             'level': 'ERROR'
-#         },
-#     },
-#     'loggers': {
-#         '': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'error_file'],
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'request': {
+            'class': 'logging.Formatter',
+            'format': 'Request: %(asctime)s %(path)s %(user)s %(body)s'
+        },
+        'response': {
+            'class': 'logging.Formatter',
+            'format': 'Response: %(asctime)s %(path)s %(user)s %(status)s - %(body)s '
+        }
+    },
+    'handlers': {
+        'request': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'request',
+            'stream': sys.stdout,
+            'level': 'DEBUG'
+        },
+        'response': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'response',
+            'stream': sys.stdout,
+            'level': 'DEBUG'
+        }
+    },
+    'loggers': {
+        'middleware.request': {
+            'level': 'DEBUG',
+            'handlers':  ['request']
+        },
+        'middleware.response': {
+            'level': 'DEBUG',
+            'handlers':  ['response']
+        }
+    }
+}
+
 
 
 # import django
