@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from process_csv.services.csv_service import CSVService
+from process_csv.services.income_processor_concurrent_service import IncomeProcessorConcurrentService
 from process_csv.services.income_processor_service import IncomeProcessorService
 
 if __name__ == '__main__':
@@ -9,7 +10,7 @@ if __name__ == '__main__':
     csv_service = CSVService()
     incomes = csv_service.read_csv('data.csv')
 
-    income_processor = IncomeProcessorService()
+    income_processor = IncomeProcessorConcurrentService()
     income_per_region = income_processor.average_per_region(incomes)
 
     end_time = datetime.now()
