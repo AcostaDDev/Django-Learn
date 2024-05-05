@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'r@mbak6&03p$l-tpt7tx5)ec_(!kk*sgk28h&%lt8n%ri@2h$5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -123,37 +123,38 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 FIXTURE_DIRS = [str(BASE_DIR.joinpath('fixtures/'))]
+ADMINS = [('david', 'acostadavdevelopment@gmail.com')]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-# Con estas líneas se habilita el loggeo de las queries a la base de datos
-LOGGING = {
-    'version': 1,
-    'formatters': {
-        'default': {
-            'class': 'logging.Formatter',
-            'format': '%(asctime)s - %(levelname)s - %(name)s --> %(message)s'
-        },
-    },
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'formatter': 'default',
-        },
-        'error_file': {
-            'class': 'logging.FileHandler',
-            'filename': 'error.log',
-            'formatter': 'default',
-            'level': 'ERROR'
-        },
-    },
-    'loggers': {
-        '': {
-            'level': 'INFO',
-            'handlers': ['console', 'error_file'],
-        },
-    }
-}
+#
+# LOGGING = {
+#     'version': 1,
+#     'formatters': {
+#         'default': {
+#             'class': 'logging.Formatter',
+#             'format': '%(asctime)s - %(levelname)s - %(name)s --> %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'stream': sys.stdout,
+#             'formatter': 'default',
+#         },
+#         'error_file': {
+#             'class': 'logging.FileHandler',
+#             'filename': 'error.log',
+#             'formatter': 'default',
+#             'level': 'ERROR'
+#         },
+#     },
+#     'loggers': {
+#         '': {
+#             'level': 'INFO',
+#             'handlers': ['console', 'error_file'],
+#         },
+#     }
+# }
 
 
 # import django
@@ -185,3 +186,4 @@ django.utils.translation.ugettext = gettext
 
 from django.utils.encoding import smart_str
 django.utils.encoding.smart_text = smart_str
+
