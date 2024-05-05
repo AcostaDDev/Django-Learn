@@ -139,6 +139,7 @@ STATIC_URL = '/static/'
 # }
 
 LOGIN_URL = '/login/'
+FIXTURE_DIRS = [str(BASE_DIR.joinpath('fixtures/'))]
 
 # import django
 # from django.utils.translation import gettext
