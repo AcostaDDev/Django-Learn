@@ -10,25 +10,21 @@ class LoggingMiddleware:
         self.response_logger = logging.getLogger('middleware.response')
 
     def __call__(self, request):
-        self.request_logger.info('request recived', extra={
-            'user': json.dumps({
-                'id': request.user.id,
-                'username': request.user.username
-            }),
-            'path': request.path,
-            'body': json.dumps(request.POST)
-        })
+        self.request_logger.info('request received',
+                                 extra={'user': json.dumps({'id': request.user.id, 'username': request.user.username}),
+                                        'body': json.dumps(request.POST),
+                                        'path': request.path
+                                        })
 
-        response = self.get_response(request)
+        from rest_framework.response import Response
+        response: Response = self.get_response(request)
 
-        self.response_logger.info('response recived', extra={
-            'user': json.dumps({
-                'id': request.user.id,
-                'username': request.user.username
-            }),
-            'path': request.path,
-            'status': response.status_code,
-            'body': json.dumps(response.__dict__.get('data', {}))       # data, {} --> si no hay data, retorna un diccionario vacio
-        })
+        if response.status_code > 299:
+            self.response_logger.info('response sent',
+                                      extra={'user': json.dumps(
+                                          {'id': request.user.id, 'username': request.user.username}),
+                                          'path': request.path,
+                                          'status': response.status_code,
+                                          'body': json.dumps(response.__dict__.get('data', {}))})
 
         return response
