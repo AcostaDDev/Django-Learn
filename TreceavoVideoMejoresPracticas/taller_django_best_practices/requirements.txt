@@ -1,0 +1,16 @@
+asgiref
+certifi
+chardet
+coreapi
+coreschema
+Django
+djangorestframework
+idna
+itypes
+Jinja2
+MarkupSafe
+pytz
+requests
+sqlparse
+uritemplate
+urllib3
