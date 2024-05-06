@@ -1,0 +1,3 @@
+
+class AccountDoesNotHaveEnoughMoneyError(Exception):
+    pass

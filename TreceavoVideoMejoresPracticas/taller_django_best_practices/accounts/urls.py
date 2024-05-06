@@ -5,4 +5,4 @@ from accounts.views import AccountViewset, TransactionViewset
 router = DefaultRouter()
 
 router.register(prefix='transactions', viewset=TransactionViewset, basename='transactions')
-router.register(prefix='', viewset=AccountViewset)
+router.register(prefix='', viewset=AccountViewset, basename='accounts')
